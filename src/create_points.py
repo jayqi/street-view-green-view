@@ -59,7 +59,9 @@ def remove_highways(gdf: gpd.GeoDataFrame):
     return out_gdf
 
 
-def interpolate_along_line(line: shapely.LineString, mini_dist: float) -> shapely.MultiPoint:
+def interpolate_along_line(
+    line: shapely.LineString, mini_dist: float
+) -> shapely.MultiPoint:
     """Given a LineString, returns a MultiPoint feature with interpolated points with
     distaince `mini_dist` between each point, excluding the endpoint.
 
@@ -72,7 +74,9 @@ def interpolate_along_line(line: shapely.LineString, mini_dist: float) -> shapel
     """
     new_coords = [
         line.interpolate(dist)
-        for dist in np.linspace(0.0, line.length, num=int(line.length / mini_dist), endpoint=False)
+        for dist in np.linspace(
+            0.0, line.length, num=int(line.length / mini_dist), endpoint=False
+        )
     ]
     return shapely.MultiPoint(new_coords)
 
